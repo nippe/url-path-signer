@@ -59,6 +59,51 @@ describe('building extrnal URLs', function(done){
       .should.equal(wantedResult);
     done();
   });
+
+  it('should decnstruct and possitivly verify signature given a proxy url', function(done){
+    var proxyUrl ='https://imagecdn.acast.com/image?source=https%3A%2F%2Facastprod.blob.core.windows.net%3A443%2Fmedia%2Fv1%2Fd94d9795-bf58-4bbf-8102-e178b9ae60ab%2F-standoutpodcastgs-ih2h5unu.jpg&sign=b85ce72865bb0000eb12903d18d3dd8db52ad771';
+    UrlSigner().verifyProxyUrl(proxyUrl, 'my-secret')
+      .should.be.true();
+    done();
+  });
+
+
+  it('should decnstruct and possitivly verify signature given a proxy url with an options literal', function(done){
+    var proxyUrl ='https://imagecdn.acast.com/image?source=https%3A%2F%2Facastprod.blob.core.windows.net%3A443%2Fmedia%2Fv1%2Fd94d9795-bf58-4bbf-8102-e178b9ae60ab%2F-standoutpodcastgs-ih2h5unu.jpg&sign=b85ce72865bb0000eb12903d18d3dd8db52ad771';
+    var options = {
+      appendType: 'querystring',
+      qsUrlParameter: 'source',
+      qsSignatureParameter: 'sign'
+    };
+
+    UrlSigner().verifyProxyUrl(proxyUrl, 'my-secret', options)
+      .should.be.true();
+    done();
+  });
+
+  it('should decnstruct and possitivly verify signature given a proxy url with an options literal with other parmeter names', function(done){
+    var proxyUrl ='https://imagecdn.acast.com/image?original=https%3A%2F%2Facastprod.blob.core.windows.net%3A443%2Fmedia%2Fv1%2Fd94d9795-bf58-4bbf-8102-e178b9ae60ab%2F-standoutpodcastgs-ih2h5unu.jpg&s=b85ce72865bb0000eb12903d18d3dd8db52ad771';
+    var options = {
+      appendType: 'querystring',
+      qsUrlParameter: 'original',
+      qsSignatureParameter: 's'
+    };
+
+    UrlSigner().verifyProxyUrl(proxyUrl, 'my-secret', options)
+      .should.be.true();
+    done();
+  });
+
+});
+
+describe('Getting the signed URL from the proxy URL', function() {
+  it('should retrive the url correctly', function(done) {
+    var proxyUrl = 'https://imagecdn.acast.com/image?source=https%3A%2F%2Facastprod.blob.core.windows.net%3A443%2Fmedia%2Fv1%2Fd94d9795-bf58-4bbf-8102-e178b9ae60ab%2F-standoutpodcastgs-ih2h5unu.jpg&sign=b85ce72865bb0000eb12903d18d3dd8db52ad771';
+    var signedUrl = 'https://acastprod.blob.core.windows.net:443/media/v1/d94d9795-bf58-4bbf-8102-e178b9ae60ab/-standoutpodcastgs-ih2h5unu.jpg';
+    UrlSigner().getSignedUrlFromProxyUrl(proxyUrl, 'my-secret')
+      .should.equal(signedUrl);
+    done();
+  });
 });
 
 

@@ -6,6 +6,10 @@
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha ./test/*.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nippe/url-path-signer.git"
+  },
   "keywords": [
     "crypto",
     "sign",

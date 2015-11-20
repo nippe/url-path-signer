@@ -1,0 +1,22 @@
+{
+  "name": "url-path-signer",
+  "version": "0.0.1",
+  "description": "Simple lib for signing the host and path part of a URL, omitting the querystring and protocol.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "crypto",
+    "sign",
+    "signature",
+    "url",
+    "hash"
+  ],
+  "author": "Niklas Nihlén <niklas.nihlen@gmail.com> (http://hardcoded.se)",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^2.3.4",
+    "should": "^7.1.1"
+  }
+}

@@ -1,7 +1,5 @@
-var assert = require('assert');
 var should = require('should');
 var UrlSigner = require('../lib');
-
 
 describe('Signing and verifying URLs', function() {
   it('should render a string', function(done){
@@ -128,3 +126,22 @@ describe('Getting the signed URL from the proxy URL', function() {
     done();
   });
 });
+
+describe('Using different hashing algoritms', function(){
+  it('should not be the same result when signing with SHA1 and SHA256', function(done){
+    var sha1Sign = UrlSigner({algo: 'sha1'}).signature('http://hardcoded.se', 'my-secret');
+    var sha256Sign = UrlSigner({algo: 'sha256'}).signature('http://hardcoded.se', 'my-secret');
+
+    sha1Sign.should.not.equal(sha256Sign);
+    done();
+  });
+
+
+});
+// 
+// describe('Input parameter checking...', function(){
+//   it('should catch when no secret is given', function(done) {
+//     UrlSigner().signature('http://hardcoded.se');
+//     done();
+//   })
+// });

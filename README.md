@@ -87,12 +87,12 @@ The first step is to build the URL. This is done by using buildUrl which takes a
 ```
 
 |Property| Explanation | Default |
-|-|-|-|
-|urlToSign| The url to sign (to the source image for example) | N/A |
-|targetUrl| The url of the proxy server | N/A |
-|appendType| How to append it to the url, currently only query string supported| 'querystring' |
-|qsUrlParameter| Name of the querystring key for the signed url | 'source'|
-|qsSignatureParameter| Name of the querystring key for the signature | 'sign' |
+|--------|-------------|---------|
+| urlToSign | The url to sign (to the source image for example) | N/A |
+| targetUrl | The url of the proxy server | N/A |
+| appendType | How to append it to the url, currently only query string supported| 'querystring' |
+| qsUrlParameter | Name of the querystring key for the signed url | 'source'|
+| qsSignatureParameter | Name of the querystring key for the signature | 'sign' |
 
 So a call like this.
 

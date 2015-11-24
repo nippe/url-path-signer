@@ -70,7 +70,7 @@ describe('Building extrnal URLs', function(done){
     var originalUrl = 'https://assests.sourcedomain.com/images/image-1-2-3.jpg';
 
     UrlSigner()
-      .buildUrl({
+      .buildProxyUrl({
         urlToSign: originalUrl,
         targetUrl: 'https://images.somedomain.com/proxyroute',
         appendType: 'querystring',
@@ -125,7 +125,21 @@ describe('Getting the signed URL from the proxy URL', function() {
       .should.equal(signedUrl);
     done();
   });
+
+  it('should blow up if signature does not match', function(done){
+    var proxyUrl = 'https://images.somedomain.com/proxyroute?source=https%3A%2F%2Fassests.sourcedomain.com%2Fimages%2Fimage-1-2-3.jpg&sign=98747241e6a226111165e4d3d0dafc2f7dfdcf0a';
+    var signedUrl = 'https://assests.sourcedomain.com/images/image-1-2-3.jpg';
+    try {
+      UrlSigner().getSignedUrlFromProxyUrl(proxyUrl, 'my-secret');
+      should.fail('Error was not thrown as it should have been');
+    }
+    catch(error) {
+      error.message.should.equal('Signature does not match');
+      done();
+    }
+  });
 });
+
 
 describe('Using different hashing algoritms', function(){
   it('should not be the same result when signing with SHA1 and SHA256', function(done){
@@ -138,7 +152,7 @@ describe('Using different hashing algoritms', function(){
 
 
 });
-// 
+//
 // describe('Input parameter checking...', function(){
 //   it('should catch when no secret is given', function(done) {
 //     UrlSigner().signature('http://hardcoded.se');

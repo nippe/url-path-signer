@@ -4,7 +4,8 @@
   "description": "Simple lib for signing the host and path part of a URL, omitting the querystring and protocol.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha ./test/*.js"
+    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- -R spec",
+    "check-coverage": "istanbul check-coverage --statements 100 --lines 100 --functions 100 --branches 100"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "gulp": "^3.9.0",
     "gulp-mocha": "^2.2.0",
     "gulp-util": "^3.0.7",
+    "istanbul": "^0.4.1",
     "mocha": "^2.3.4",
     "should": "^7.1.1"
   }

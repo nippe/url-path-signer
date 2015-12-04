@@ -97,7 +97,7 @@ describe('Building extrnal URLs', function(done){
 
      should.fail('Should never get here');
    } catch (error) {
-     error.message.should.equal('Not implemented yet');
+     error.message.should.equal('Invalid appendType property');
      done();
    }
   });

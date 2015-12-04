@@ -82,6 +82,27 @@ describe('Building extrnal URLs', function(done){
     done();
   });
 
+  it('should blowup when "appendType" is not "querystring"', function(done){
+
+    try{
+     UrlSigner()
+      .buildProxyUrl({
+        urlToSign: 'http://hardcoded.se/',
+        targetUrl: 'https://images.somedomain.com/proxyroute',
+        appendType: 'foobar',
+        qsUrlParameter: 'source',
+        qsSignatureParameter: 'sign'
+      },
+      'my-secret');
+
+     should.fail('Should never get here');
+   } catch (error) {
+     error.message.should.equal('Not implemented yet');
+     done();
+   }
+  });
+
+
   it('should decnstruct and possitivly verify signature given a proxy url', function(done){
     var proxyUrl ='https://images.somedomain.com/proxyroute?source=https%3A%2F%2Fassests.sourcedomain.com%2Fimages%2Fimage-1-2-3.jpg&sign=98747241e6a226ba7e65e4d3d0dafc2f7dfdcf0a';
     UrlSigner().verifyProxyUrl(proxyUrl, 'my-secret')

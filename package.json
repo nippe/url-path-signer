@@ -1,6 +1,6 @@
 {
   "name": "url-path-signer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Simple lib for signing the host and path part of a URL, omitting the querystring and protocol.",
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,6 @@
     "gulp-util": "^3.0.7",
     "istanbul": "^0.4.1",
     "mocha": "^2.3.4",
-    "should": "^7.1.1"
+    "should": "^8.0.2"
   }
 }

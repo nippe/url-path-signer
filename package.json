@@ -1,6 +1,6 @@
 {
   "name": "url-path-signer",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Simple lib for signing the host and path part of a URL, omitting the querystring and protocol.",
   "main": "index.js",
   "scripts": {

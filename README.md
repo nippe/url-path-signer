@@ -97,7 +97,7 @@ The first step is to build the URL. This is done by using buildUrl which takes a
 So a call like this.
 
 ### buildProxyUrl
-
+#### Querystring
 ```
 UrlSigner()
   .buildProxyUrl({
@@ -111,6 +111,19 @@ UrlSigner()
 
 // =>
 https://webproxy.somedomain.com/proxyroute?source=https%3A%2F%2Fassests.sourcedomain.com%2Fimages%2Fimage-1-2-3.jpg&sign=98747241e6a226ba7e65e4d3d0dafc2f7dfdcf0a
+```
+
+#### In path
+```
+UrlSigner()
+  .buildProxyUrl({
+      urlToSign: 'https://assests.sourcedomain.com/images/image-1-2-3.jpg',
+      targetUrl: 'https://images.somedomain.com/proxyroute',
+      appendType: 'path',
+      qsSignatureParameter: 'sign'
+    },
+    'my-secret');
+// => 'https://images.somedomain.com/proxyroute/https%3A%2F%2Fassests.sourcedomain.com%2Fimages%2Fimage-1-2-3.jpg?sign=98747241e6a226ba7e65e4d3d0dafc2f7dfdcf0a'
 ```
 
 ### getSignedUrlFromProxyUrl
@@ -127,6 +140,7 @@ UrlSigner().getSignedUrlFromProxyUrl(proxyUrl, 'my-secret');
 It also takes the same options object as described [above](#proxy-routes).
 
 ### verifyProxyUrl
+#### Querystring
 This is more of a utility method. Parses out the source url and verifies its signature. Returning true or false.
 
 ```
@@ -134,6 +148,22 @@ var proxyUrl ='https://images.somedomain.com/proxyroute?original=https%3A%2F%2Fa
 var options = {
   appendType: 'querystring',
   qsUrlParameter: 'original',
+  qsSignatureParameter: 's'
+};
+
+UrlSigner().verifyProxyUrl(proxyUrl, 'my-secret', options)
+// => true
+```
+
+#### In path
+It's also possible to put the signed URL in the path. *This does some not so nice string matching stuff. It might be buggy and needs some stabilizing.*
+```
+var proxyUrl = 'https://images.somedomain.com/proxyroute/https%3A%2F%2Fassests.sourcedomain.com%2Fimages%2Fimage-1-2-3.jpg?s=98747241e6a226ba7e65e4d3d0dafc2f7dfdcf0a';
+
+var options = {
+  appendType: 'path',
+  proxyUrl: '/proxyroute',
+  qsUrlParameter: '',
   qsSignatureParameter: 's'
 };
 

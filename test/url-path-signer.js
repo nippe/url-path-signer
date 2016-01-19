@@ -82,8 +82,6 @@ describe('Building extrnal URLs', function(done) {
     done();
   });
 
-
-
   it('should build the url by appending the signed URL to the path', function(done) {
     var wantedResult = 'https://images.somedomain.com/proxyroute/https%3A%2F%2Fassests.sourcedomain.com%2Fimages%2Fimage-1-2-3.jpg?sign=98747241e6a226ba7e65e4d3d0dafc2f7dfdcf0a';
     var originalUrl = 'https://assests.sourcedomain.com/images/image-1-2-3.jpg';
@@ -99,7 +97,6 @@ describe('Building extrnal URLs', function(done) {
       .should.equal(wantedResult);
     done();
   });
-
 
   it('should blowup when "appendType" is not "querystring"', function(done) {
 
@@ -233,7 +230,7 @@ describe('Using different hashing algoritms', function() {
     var sha1Sign = UrlSigner({
       algo: 'sha1'
     }).signature('http://hardcoded.se', 'my-secret');
-    
+
     var sha256Sign = UrlSigner({
       algo: 'sha256'
     }).signature('http://hardcoded.se', 'my-secret');

@@ -4,8 +4,8 @@
   "description": "Simple lib for signing the host and path part of a URL, omitting the querystring and protocol.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/ava test/ --verbose",
-    "check-coverage": "nyc check-coverage --lines 100 --functions 100 --branches 100"
+    "test": "./node_modules/.bin/ava test/",
+    "check-coverage": "nyc --check-coverage --lines 100 --functions 100 --branches 100 npm test"
   },
   "repository": {
     "type": "git",

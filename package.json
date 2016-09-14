@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git@github.com:nippe/url-path-signer.git"
   },
+  "engines": {
+    "node": ">=4"
+  },
   "keywords": [
     "crypto",
     "sign",

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "check-coverage": "istanbul check-coverage --statements 100 --lines 100 --functions 100 --branches 100"
+    "check-coverage": "npm test -- --coverage"
   },
   "repository": {
     "type": "git",

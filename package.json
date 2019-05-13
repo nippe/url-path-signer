@@ -21,7 +21,7 @@
   "author": "Niklas Nihlén <niklas.nihlen@gmail.com> (http://hardcoded.se)",
   "license": "MIT",
   "devDependencies": {
-    "assert": "^1.4.1",
+    "assert": "^2.0.0",
     "gulp": "^3.9.1",
     "gulp-mocha": "^3.0.1",
     "gulp-util": "^3.0.7",
